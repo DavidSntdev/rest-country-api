@@ -1,4 +1,5 @@
 import { Select, SelectItem } from "@nextui-org/select";
+import { Input } from "@nextui-org/input";
 
 import { SearchIcon } from "./icons";
 
