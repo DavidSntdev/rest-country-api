@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
-import Image from "next/image";
-import { Button } from "@nextui-org/button";
-import { GoArrowDown } from "react-icons/go";
 
 import Inputs from "./home/inputs";
-import TextHome from "./home/textHome";
+import Botoes from "./home/botoes";
+import Paises from "./home/paises";
 
 import { fetchCountries } from "@/services/countries";
 import Country from "@/config/interfaceCountries";
@@ -42,14 +40,6 @@ export default function Home({ setSelectedCountry }: HomeProps) {
     return matchesName && matchesContinent;
   });
 
-  const handleCountryClick = (country: Country) => {
-    setSelectedCountry(country);
-  };
-
-  const mostrar = () => {
-    setMostrarTudo(true);
-  };
-
   return (
     <>
       <div className="flex flex-col sm:flex-row sm:justify-between gap-10 w-full">
@@ -59,61 +49,13 @@ export default function Home({ setSelectedCountry }: HomeProps) {
         />
       </div>
       <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 px-5 sm:px-0 py-5 gap-5 sm:gap-20">
-        {mostrarTudo
-          ? filteredCountries.map((country) => (
-              <div
-                key={country.cca3}
-                className="rounded-md bg-veryLightGray dark:bg-darkBlue shadow-medium cursor-pointer"
-                role="button"
-                tabIndex={0}
-                onClick={() => handleCountryClick(country)}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter" || e.key === " ") {
-                    handleCountryClick(country);
-                  }
-                }}
-              >
-                <Image
-                  alt={`Flag of ${country.name.common}`}
-                  className="w-full h-[150px] object-cover rounded-t-md"
-                  height={0}
-                  src={country.flags.svg}
-                  width={0}
-                />
-                <TextHome country={country} />
-              </div>
-            ))
-          : filteredCountries.slice(0, 8).map((country) => (
-              <div
-                key={country.cca3}
-                className="rounded-md bg-veryLightGray dark:bg-darkBlue shadow-medium cursor-pointer"
-                role="button"
-                tabIndex={0}
-                onClick={() => handleCountryClick(country)}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter" || e.key === " ") {
-                    handleCountryClick(country);
-                  }
-                }}
-              >
-                <Image
-                  alt={`Flag of ${country.name.common}`}
-                  className="w-full h-[150px] object-cover rounded-t-md"
-                  height={0}
-                  src={country.flags.svg}
-                  width={0}
-                />
-                <TextHome country={country} />
-              </div>
-            ))}
+        <Paises
+          filteredCountries={filteredCountries}
+          mostrarTudo={mostrarTudo}
+          setSelectedCountry={setSelectedCountry}
+        />
       </div>
-      <Button
-        className="bg-transparent"
-        style={{ display: mostrarTudo ? "none" : "block" }}
-        onClick={mostrar}
-      >
-        <GoArrowDown />
-      </Button>
+      <Botoes mostrar={setMostrarTudo} mostrarTudo={mostrarTudo} />
     </>
   );
 }
