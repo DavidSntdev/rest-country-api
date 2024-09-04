@@ -1,7 +1,7 @@
 import { Input } from "@nextui-org/input";
 import { Select, SelectItem } from "@nextui-org/select";
 
-import { SearchIcon } from "./icons";
+import { SearchIcon } from "../icons";
 
 import { regions } from "@/config/regions";
 

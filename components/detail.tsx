@@ -5,8 +5,8 @@ import { useRouter } from "next/router";
 
 import Country from "../config/interfaceCountries";
 
-import Descricao from "./descricao";
-import Borders from "./borders";
+import Descricao from "./detail/descricao";
+import Borders from "./detail/borders";
 
 interface DetailProps {
   country: Country;

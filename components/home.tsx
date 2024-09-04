@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 
-import Inputs from "./inputs";
-import TextHome from "./textHome";
+import Inputs from "./home/inputs";
+import TextHome from "./home/textHome";
 
 import { fetchCountries } from "@/services/countries";
 import Country from "@/config/interfaceCountries";

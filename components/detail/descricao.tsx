@@ -1,4 +1,4 @@
-import Country from "../config/interfaceCountries";
+import Country from "../../config/interfaceCountries";
 
 interface DescricaoProps {
   country: Country;
