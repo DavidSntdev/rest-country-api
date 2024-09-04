@@ -44,7 +44,8 @@ Users should be able to:
 - [Next.js](https://nextjs.org/) - React framework
 - [Tailwind CSS](https://tailwindcss.com/docs/) - For styles
 - [NextUI](https://nextui.org/docs/guide/) - For UI
-- [Next Themes](https://github.com/pacocoursey/next-themes) - For Themes
+- [Next Themes](https://github.com/pacocoursey/next-themes) - For themes
+- [RestFul API](https://restcountries.com/) - For API countrys
 
 ## Author
 

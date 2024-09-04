@@ -75,13 +75,13 @@ export const ThemeSwitch: FC<ThemeSwitchProps> = ({
       >
         {isSelected ? (
           <p className="flex gap-2 text-default-900 font-semibold">
-            <SunFilledIcon size={22} />
-            <p className="hidden md:flex">Light Mode</p>
+            <MoonFilledIcon size={22} />
+            <p className="hidden md:flex">Dark Mode</p>
           </p>
         ) : (
           <p className="flex gap-2 text-default-900 font-semibold">
-            <MoonFilledIcon size={22} />
-            <p className="hidden md:flex">Dark Mode</p>
+            <SunFilledIcon size={22} />
+            <p className="hidden md:flex">Light Mode</p>
           </p>
         )}
       </div>
