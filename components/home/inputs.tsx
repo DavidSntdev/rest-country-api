@@ -18,7 +18,7 @@ export default function Inputs({ setSearchTerm }: InputsProps) {
           mainWrapper: "h-full",
           input: "text-small",
           inputWrapper:
-            "h-full font-normal text-default-500 bg-veryLightGray dark:bg-darkBlue w-[500px] px-10 py-7 rounded-md",
+            "h-full font-normal text-default-500 bg-veryLightGray dark:bg-darkBlue sm:w-[300px] md:w-[500px] w-full  px-10 py-7 rounded-md",
         }}
         placeholder="Search for country..."
         size="md"

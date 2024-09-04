@@ -35,10 +35,10 @@ export default function Home({ ...props }: HomeProps) {
 
   return (
     <>
-      <div className="flex justify-between gap-4 w-full">
+      <div className="flex flex-col sm:flex-row sm:justify-between gap-10 w-full">
         <Inputs setSearchTerm={setSearchTerm} />
       </div>
-      <div className="w-full grid grid-cols-4 py-5 gap-20">
+      <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 px-5 sm:px-0 py-5 gap-5 sm:gap-20">
         {filteredCountries.slice(0, 8).map((country) => (
           <div
             key={country.cca3}
