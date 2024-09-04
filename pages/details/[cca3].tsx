@@ -51,7 +51,7 @@ const DetailPage = () => {
   return (
     <DefaultLayout>
       <section className="flex flex-col items-center justify-center gap-4">
-        <Detail country={country} setDetail={() => router.push("/")} />
+        <Detail country={country} />
       </section>
     </DefaultLayout>
   );

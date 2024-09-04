@@ -23,7 +23,7 @@ export default function IndexPage() {
             <CircularProgress aria-label="Loading..." size="lg" />
           </div>
         ) : (
-          <Home setDetail={() => {}} setSelectedCountry={handleCountrySelect} />
+          <Home setSelectedCountry={handleCountrySelect} />
         )}
       </section>
     </DefaultLayout>

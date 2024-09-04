@@ -8,7 +8,6 @@ import { fetchCountries } from "@/services/countries";
 import Country from "@/config/interfaceCountries";
 
 interface HomeProps {
-  setDetail: (value: boolean) => void;
   setSelectedCountry: (country: Country) => void;
 }
 
@@ -32,7 +31,6 @@ export default function Home({ ...props }: HomeProps) {
 
   const handleCountryClick = (country: Country) => {
     props.setSelectedCountry(country);
-    props.setDetail(true);
   };
 
   return (
