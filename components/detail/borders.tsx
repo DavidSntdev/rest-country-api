@@ -29,20 +29,22 @@ export default function Borders({ country }: BordersProps) {
   };
 
   return (
-    <div className="flex flex-row gap-4 flex-wrap">
+    <div className="flex flex-col gap-4 lg:flex-wrap">
       <strong>Border Countries:</strong>
-      {borders.length > 0 ? (
-        borders.map((border, index) => (
-          <Button
-            key={index}
-            className="h-7 rounded-sm shadow-small bg-veryLightGray dark:bg-darkBlue place-self-start px-10 gap-1"
-          >
-            {getCountryNameByCCA3(border)}
-          </Button>
-        ))
-      ) : (
-        <p>It&#39;s an island</p>
-      )}
+      <div className="flex gap-3 flex-wrap">
+        {borders.length > 0 ? (
+          borders.map((border, index) => (
+            <Button
+              key={index}
+              className="h-7 rounded-sm shadow-small bg-veryLightGray dark:bg-darkBlue place-self-center px-10 gap-1"
+            >
+              {getCountryNameByCCA3(border)}
+            </Button>
+          ))
+        ) : (
+          <p>It&#39;s an island</p>
+        )}
+      </div>
     </div>
   );
 }
