@@ -1,25 +1,29 @@
+import { useRouter } from "next/router";
 import { useState } from "react";
-
-import Country from "../config/interfaceCountries";
+import { CircularProgress } from "@nextui-org/progress";
 
 import DefaultLayout from "@/layouts/default";
-import Detail from "@/components/detail";
 import Home from "@/components/home";
+import Country from "@/config/interfaceCountries";
 
 export default function IndexPage() {
-  const [showDetail, setShowDetail] = useState<boolean>(false);
+  const router = useRouter();
   const [selectedCountry, setSelectedCountry] = useState<Country | null>(null);
+
+  const handleCountrySelect = (country: Country) => {
+    setSelectedCountry(country);
+    router.push(`/details/${country.cca3}`);
+  };
 
   return (
     <DefaultLayout>
       <section className="flex flex-col items-center justify-center gap-4">
-        {showDetail && selectedCountry ? (
-          <Detail country={selectedCountry} setDetail={setShowDetail} />
+        {selectedCountry ? (
+          <div>
+            <CircularProgress aria-label="Loading..." size="lg" />
+          </div>
         ) : (
-          <Home
-            setDetail={setShowDetail}
-            setSelectedCountry={setSelectedCountry}
-          />
+          <Home setDetail={() => {}} setSelectedCountry={handleCountrySelect} />
         )}
       </section>
     </DefaultLayout>
