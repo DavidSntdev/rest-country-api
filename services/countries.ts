@@ -1,15 +1,4 @@
-export interface Country {
-  cca3: string;
-  name: {
-    common: string;
-  };
-  capital?: string[];
-  region: string;
-  population: number;
-  flags: {
-    svg: string;
-  };
-}
+import Country from '../config/interfaceCountries';
 
 export const fetchCountries = async (): Promise<Country[]> => {
   try {

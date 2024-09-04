@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { Country } from "../services/countries";
+import Country from "../config/interfaceCountries";
 
 import DefaultLayout from "@/layouts/default";
 import Detail from "@/components/detail";
