@@ -90,11 +90,11 @@ export const SunFilledIcon = ({
   </svg>
 );
 
-export const SearchIcon = ({
+export const SearchIcon: React.FC<IconSvgProps> = ({
   size = 24,
   strokeWidth = 1.5,
-  width = 24,
-  height = 24,
+  width,
+  height,
   ...props
 }) => {
   return (
