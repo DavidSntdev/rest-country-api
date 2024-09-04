@@ -19,7 +19,7 @@ export default function Descricao({ country }: DescricaoProps) {
   ));
 
   return (
-    <div className="flex flex-col lg:flex-row justify-between">
+    <div className="flex flex-col lg:flex-row justify-between md:gap-20 md:w-full">
       <div className="flex flex-col">
         <p>
           <strong>Native Name: </strong>
