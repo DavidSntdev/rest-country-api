@@ -7,9 +7,13 @@ import { regions } from "@/config/regions";
 
 interface InputsProps {
   setSearchTerm: (term: string) => void;
+  setSearchContinent: (continent: string) => void; // Add this prop
 }
 
-export default function Inputs({ setSearchTerm }: InputsProps) {
+export default function Inputs({
+  setSearchTerm,
+  setSearchContinent,
+}: InputsProps) {
   return (
     <>
       <Input
@@ -35,9 +39,12 @@ export default function Inputs({ setSearchTerm }: InputsProps) {
         }}
         label="Filter by Region"
         placeholder="Select the region"
+        onChange={(e) => setSearchContinent(e.target.value)}
       >
         {regions.map((region) => (
-          <SelectItem key={region.key}>{region.label}</SelectItem>
+          <SelectItem key={region.key} value={region.key}>
+            {region.label}
+          </SelectItem>
         ))}
       </Select>
     </>

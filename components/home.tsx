@@ -11,9 +11,10 @@ interface HomeProps {
   setSelectedCountry: (country: Country) => void;
 }
 
-export default function Home({ ...props }: HomeProps) {
+export default function Home({ setSelectedCountry }: HomeProps) {
   const [countries, setCountries] = useState<Country[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>("");
+  const [searchContinent, setSearchContinent] = useState<string>("");
 
   useEffect(() => {
     const getCountries = async () => {
@@ -25,21 +26,33 @@ export default function Home({ ...props }: HomeProps) {
     getCountries();
   }, []);
 
-  const filteredCountries = countries.filter((country) =>
-    country.name.common.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const filteredCountries = countries.filter((country) => {
+    const matchesName = country.name.common
+      .toLowerCase()
+      .includes(searchTerm.toLowerCase());
+    const matchesContinent = searchContinent
+      ? country.continents.some((continent) =>
+          continent.toLowerCase().includes(searchContinent.toLowerCase())
+        )
+      : true;
+
+    return matchesName && matchesContinent;
+  });
 
   const handleCountryClick = (country: Country) => {
-    props.setSelectedCountry(country);
+    setSelectedCountry(country);
   };
 
   return (
     <>
       <div className="flex flex-col sm:flex-row sm:justify-between gap-10 w-full">
-        <Inputs setSearchTerm={setSearchTerm} />
+        <Inputs
+          setSearchContinent={setSearchContinent}
+          setSearchTerm={setSearchTerm}
+        />
       </div>
       <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 px-5 sm:px-0 py-5 gap-5 sm:gap-20">
-        {filteredCountries.slice(0, 8).map((country) => (
+        {filteredCountries.map((country) => (
           <div
             key={country.cca3}
             className="rounded-md bg-veryLightGray dark:bg-darkBlue shadow-medium cursor-pointer"
