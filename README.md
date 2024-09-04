@@ -30,7 +30,7 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
+- Solution URL: [Solution](https://www.frontendmentor.io/solutions/country-api-page-made-with-nextjs-typescript-and-tailwind-U6fhPlP24t)
 - Live Site URL: [countrys-details.vercel.app](https://countrys-details.vercel.app)
 
 ### Built with
