@@ -4,9 +4,9 @@ import Image from "next/image";
 import { fetchCountries, Country } from "../services/countries";
 
 import { Inputs } from "./inputs";
-
 interface HomeProps {
   setDetail: (value: boolean) => void;
+  setSelectedCountry: (country: Country) => void;
 }
 
 export default function Home({ ...props }: HomeProps) {
@@ -22,7 +22,10 @@ export default function Home({ ...props }: HomeProps) {
     getCountries();
   }, []);
 
-  const mostrarDetails = () => props.setDetail(true);
+  const handleCountryClick = (country: Country) => {
+    props.setSelectedCountry(country);
+    props.setDetail(true);
+  };
 
   return (
     <>
@@ -36,10 +39,10 @@ export default function Home({ ...props }: HomeProps) {
             className="rounded-md bg-veryLightGray dark:bg-darkBlue shadow-medium cursor-pointer"
             role="button"
             tabIndex={0}
-            onClick={mostrarDetails}
+            onClick={() => handleCountryClick(country)}
             onKeyDown={(e) => {
               if (e.key === "Enter" || e.key === " ") {
-                mostrarDetails();
+                handleCountryClick(country);
               }
             }}
           >
