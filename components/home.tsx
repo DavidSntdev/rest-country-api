@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 
-import { fetchCountries, Country } from "../services/countries";
+import Inputs from "./inputs";
+import TextHome from "./textHome";
 
-import { Inputs } from "./inputs";
+import { fetchCountries } from "@/services/countries";
+import Country from "@/config/interfaceCountries";
+
 interface HomeProps {
   setDetail: (value: boolean) => void;
   setSelectedCountry: (country: Country) => void;
@@ -11,6 +14,7 @@ interface HomeProps {
 
 export default function Home({ ...props }: HomeProps) {
   const [countries, setCountries] = useState<Country[]>([]);
+  const [searchTerm, setSearchTerm] = useState<string>("");
 
   useEffect(() => {
     const getCountries = async () => {
@@ -22,6 +26,10 @@ export default function Home({ ...props }: HomeProps) {
     getCountries();
   }, []);
 
+  const filteredCountries = countries.filter((country) =>
+    country.name.common.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   const handleCountryClick = (country: Country) => {
     props.setSelectedCountry(country);
     props.setDetail(true);
@@ -30,10 +38,10 @@ export default function Home({ ...props }: HomeProps) {
   return (
     <>
       <div className="flex justify-between gap-4 w-full">
-        <Inputs />
+        <Inputs setSearchTerm={setSearchTerm} />
       </div>
       <div className="w-full grid grid-cols-4 py-5 gap-20">
-        {countries.slice(0, 8).map((country) => (
+        {filteredCountries.slice(0, 8).map((country) => (
           <div
             key={country.cca3}
             className="rounded-md bg-veryLightGray dark:bg-darkBlue shadow-medium cursor-pointer"
@@ -53,29 +61,7 @@ export default function Home({ ...props }: HomeProps) {
               src={country.flags.svg}
               width={0}
             />
-            <div className="flex flex-col p-5">
-              <h1 className="text-lg font-bold">{country.name.common}</h1>
-              <div className="mt-2">
-                <p className="text-sm text-default-700">
-                  <strong className="font-semibold text-default-900">
-                    Population:{" "}
-                  </strong>
-                  {country.population}
-                </p>
-                <p className="text-sm text-default-700">
-                  <strong className="font-semibold text-default-900">
-                    Region:{" "}
-                  </strong>
-                  {country.region}
-                </p>
-                <p className="text-sm text-default-700">
-                  <strong className="font-semibold text-default-900">
-                    Capital:{" "}
-                  </strong>
-                  {country.capital}
-                </p>
-              </div>
-            </div>
+            <TextHome country={country} />
           </div>
         ))}
       </div>

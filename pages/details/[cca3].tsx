@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import {CircularProgress} from "@nextui-org/progress";
+import { CircularProgress } from "@nextui-org/progress";
 
 import DefaultLayout from "@/layouts/default";
 import Detail from "@/components/detail";
@@ -41,8 +41,8 @@ const DetailPage = () => {
 
   if (loading)
     return (
-      <div className="w-screen h-screen flex items-center absolute justify-center">
-        <CircularProgress aria-label="Loading..." />
+      <div className="w-screen h-screen flex items-center justify-center">
+        <CircularProgress aria-label="Loading..." size="lg" />
       </div>
     );
   if (error) return <div>Error: {error}</div>;

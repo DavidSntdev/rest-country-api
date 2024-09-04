@@ -5,17 +5,25 @@ interface DescricaoProps {
 }
 
 export default function Descricao({ country }: DescricaoProps) {
-  const nativeLanguageCode = "eng";
-  const currencyCode = "SHP";
+  const defaultLanguageCode = Object.keys(country.name.nativeName)[0];
+  const nativeName =
+    country.name.nativeName[defaultLanguageCode]?.common ||
+    "It's the same name";
+
   const languages = country.languages;
   const languageNames = Object.values(languages).join(", ");
+
+  const currencyEntries = Object.entries(country.currencies);
+  const currencyInfo = currencyEntries.map(([code]) => (
+    <p key={code}>{code}</p>
+  ));
 
   return (
     <div className="flex flex-row justify-between">
       <div className="flex flex-col">
         <p>
           <strong>Native Name: </strong>
-          {country.name.nativeName[nativeLanguageCode]?.official || "N/A"}
+          {nativeName}
         </p>
         <p>
           <strong>Population: </strong>
@@ -27,11 +35,11 @@ export default function Descricao({ country }: DescricaoProps) {
         </p>
         <p>
           <strong>Sub Region: </strong>
-          {country.subregion || "N/A"}
+          {country.subregion || "No subregions"}
         </p>
         <p>
           <strong>Capital: </strong>
-          {country.capital?.join(", ") || "N/A"}
+          {country.capital?.join(", ") || "No capital"}
         </p>
       </div>
       <div className="flex flex-col">
@@ -39,9 +47,9 @@ export default function Descricao({ country }: DescricaoProps) {
           <strong>Top Level Domain: </strong>
           {country.tld.join(", ")}
         </p>
-        <p>
-          <strong>Currency: </strong>
-          {country.currencies[currencyCode]?.name || "N/A"}
+        <p className="flex gap-2">
+          <strong>Currency:</strong>
+          {currencyInfo.length > 0 ? currencyInfo : <p>No currencies</p>}
         </p>
         <p>
           <strong>Languages: </strong>

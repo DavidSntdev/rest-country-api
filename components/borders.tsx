@@ -22,7 +22,7 @@ export default function Borders({ country }: BordersProps) {
           </Button>
         ))
       ) : (
-        <p>None</p>
+        <p>It&#39;s an island</p>
       )}
     </div>
   );

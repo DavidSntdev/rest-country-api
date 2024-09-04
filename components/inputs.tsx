@@ -5,7 +5,11 @@ import { SearchIcon } from "./icons";
 
 import { regions } from "@/config/regions";
 
-export function Inputs() {
+interface InputsProps {
+  setSearchTerm: (term: string) => void;
+}
+
+export default function Inputs({ setSearchTerm }: InputsProps) {
   return (
     <>
       <Input
@@ -20,6 +24,7 @@ export function Inputs() {
         size="md"
         startContent={<SearchIcon className="mb-1 mr-3" size={17} />}
         type="search"
+        onChange={(e) => setSearchTerm(e.target.value)}
       />
       <Select
         className="max-w-[180px]"
