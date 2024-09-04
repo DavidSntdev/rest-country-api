@@ -10,7 +10,7 @@ export default function IndexPage() {
   return (
     <DefaultLayout>
       <section className="flex flex-col items-center justify-center gap-4">
-        {showDetail ? <Detail /> : <Home />}
+        {showDetail ? <Detail setDetail={setShowDetail} /> : <Home setDetail={setShowDetail} />}
       </section>
     </DefaultLayout>
   );

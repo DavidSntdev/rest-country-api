@@ -5,7 +5,11 @@ import { fetchCountries, Country } from "../services/countries";
 
 import { Inputs } from "./inputs";
 
-export default function Home() {
+interface HomeProps {
+  setDetail: (value: boolean) => void;
+}
+
+export default function Home({ ...props }: HomeProps) {
   const [countries, setCountries] = useState<Country[]>([]);
 
   useEffect(() => {
@@ -18,6 +22,8 @@ export default function Home() {
     getCountries();
   }, []);
 
+  const mostrarDetails = () => props.setDetail(true);
+
   return (
     <>
       <div className="flex justify-between gap-4 w-full">
@@ -27,7 +33,15 @@ export default function Home() {
         {countries.slice(0, 8).map((country) => (
           <div
             key={country.cca3}
-            className="rounded-md bg-veryLightGray dark:bg-darkBlue shadow-medium"
+            className="rounded-md bg-veryLightGray dark:bg-darkBlue shadow-medium cursor-pointer"
+            role="button"
+            tabIndex={0}
+            onClick={mostrarDetails}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                mostrarDetails();
+              }
+            }}
           >
             <Image
               alt={`Flag of ${country.name.common}`}
@@ -36,8 +50,28 @@ export default function Home() {
               src={country.flags.svg}
               width={0}
             />
-            <div className="flex p-5">
-                <h1 className="text-lg font-bold">{country.name.common}</h1>
+            <div className="flex flex-col p-5">
+              <h1 className="text-lg font-bold">{country.name.common}</h1>
+              <div className="mt-2">
+                <p className="text-sm text-default-700">
+                  <strong className="font-semibold text-default-900">
+                    Population:{" "}
+                  </strong>
+                  {country.population}
+                </p>
+                <p className="text-sm text-default-700">
+                  <strong className="font-semibold text-default-900">
+                    Region:{" "}
+                  </strong>
+                  {country.region}
+                </p>
+                <p className="text-sm text-default-700">
+                  <strong className="font-semibold text-default-900">
+                    Capital:{" "}
+                  </strong>
+                  {country.capital}
+                </p>
+              </div>
             </div>
           </div>
         ))}
